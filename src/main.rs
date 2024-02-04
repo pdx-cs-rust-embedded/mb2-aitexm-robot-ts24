@@ -27,9 +27,10 @@ Wiring:
 use cortex_m_rt::entry;
 use display_interface_spi::SPIInterface;
 use embedded_graphics::{
-    mono_font::{ascii::FONT_6X10, MonoTextStyle},
+    mono_font::{ascii::FONT_10X20, MonoTextStyle},
     pixelcolor::Rgb565,
     prelude::*,
+    primitives::*,
     text::{Alignment, Text},
 };
 //use embedded_hal::digital::{blocking::OutputPin, ErrorType, PinState};
@@ -56,7 +57,7 @@ fn main() -> ! {
         phase: spim::Phase::CaptureOnFirstTransition,
     };
     // XXX Can probably be much faster.
-    let spi_clock_rate = frequency::FREQUENCY_A::M8;
+    let spi_clock_rate = frequency::FREQUENCY_A::M2;
     let sck = board.pins.p0_17
         .into_push_pull_output(gpio::Level::Low)
         .degrade();
@@ -84,25 +85,43 @@ fn main() -> ! {
         spi_iface,
         rst,
         &mut delay,
-        Orientation::Portrait,
+        Orientation::Landscape,
         DisplaySize240x320,
     )
     .unwrap();
 
     rprintln!("set up");
 
-    // Create a new character style
-    let style = MonoTextStyle::new(&FONT_6X10, Rgb565::RED);
+    lcd.clear(Rgb565::WHITE).unwrap();
 
-    // Create a text at position (20, 30) and draw it using the previously defined style
-    Text::with_alignment(
-        "First line\nSecond line",
-        Point::new(20, 30),
-        style,
-        Alignment::Center,
-    )
-    .draw(&mut lcd)
-    .unwrap();
+    #[cfg(feature = "circle")] {
+        // Circle with styled stroke and fill.
+        let style = PrimitiveStyleBuilder::new()
+            .stroke_color(Rgb565::BLUE)
+            .stroke_width(3)
+            .fill_color(Rgb565::GREEN)
+            .build();
+
+        Circle::new(Point::new(50, 10), 60)
+            .into_styled(style)
+            .draw(&mut lcd)
+            .unwrap();
+    }
+
+    #[cfg(feature = "text")] {
+        // Create a new character style
+        let style = MonoTextStyle::new(&FONT_10X20, Rgb565::RED);
+
+        // Styled text.
+        Text::with_alignment(
+            "Welcome To\nTFT Display",
+            Point::new(100, 150),
+            style,
+            Alignment::Center,
+        )
+        .draw(&mut lcd)
+        .unwrap();
+    }
 
     rprintln!("drawn");
 

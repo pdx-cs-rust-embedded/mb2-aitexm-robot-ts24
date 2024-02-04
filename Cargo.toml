@@ -22,3 +22,8 @@ git = "https://github.com/BartMassey-upstream/microbit"
 [dependencies.cortex-m]
 version = "0.7"
 features = ["inline-asm", "critical-section-single-core"]
+
+[features]
+default = ["circle", "text"]
+circle = []
+text = []
