@@ -39,12 +39,13 @@ use microbit::{
     hal::{delay::Delay, gpio, spim},
     pac::spim0::frequency,
 };
-use rtt_target::rtt_init_print;
+use rtt_target::{rtt_init_print, rprintln};
 use panic_rtt_target as _;
 
 #[entry]
 fn main() -> ! {
     rtt_init_print!();
+    rprintln!("starting");
 
     let board = Board::take().unwrap();
 
@@ -88,6 +89,8 @@ fn main() -> ! {
     )
     .unwrap();
 
+    rprintln!("set up");
+
     // Create a new character style
     let style = MonoTextStyle::new(&FONT_6X10, Rgb565::RED);
 
@@ -100,6 +103,8 @@ fn main() -> ! {
     )
     .draw(&mut lcd)
     .unwrap();
+
+    rprintln!("drawn");
 
     loop {
         cortex_m::asm::wfe();
