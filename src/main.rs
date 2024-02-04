@@ -85,7 +85,7 @@ fn main() -> ! {
         spi_iface,
         rst,
         &mut delay,
-        Orientation::Landscape,
+        Orientation::LandscapeFlipped,
         DisplaySize240x320,
     )
     .unwrap();
