@@ -18,6 +18,7 @@ branch = "v0.6.0-bart"
 
 [dependencies.microbit-v2]
 git = "https://github.com/BartMassey-upstream/microbit"
+branch = "v0.13.1-pre"
 
 # This works around old versions in the `microbit-v2`
 # crate. You don't have to use this crate, just linking

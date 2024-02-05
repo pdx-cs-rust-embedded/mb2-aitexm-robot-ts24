@@ -68,7 +68,7 @@ dependencies = [
  "bare-metal",
  "bitfield",
  "critical-section",
- "embedded-hal",
+ "embedded-hal 0.2.7",
  "volatile-register",
 ]
 
@@ -118,7 +118,7 @@ checksum = "489378ad054862146fbd1f09f51d585ccbe4bd1e2feadcda2a13ac33f840e1a5"
 dependencies = [
  "byte-slice-cast",
  "display-interface",
- "embedded-hal",
+ "embedded-hal 0.2.7",
 ]
 
 [[package]]
@@ -164,6 +164,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "embedded-hal"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "361a90feb7004eca4019fb28352a9465666b24f840f5c3cddf0ff13920590b89"
+
+[[package]]
+name = "embedded-io"
+version = "0.6.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "edd0f118536f44f5ccd48bcb8b111bdc3de888b58c74639dfb034a357d0f206d"
+
+[[package]]
 name = "embedded-storage"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -207,7 +219,7 @@ source = "git+https://github.com/pdx-cs-rust-embedded/ili9341-rs?branch=v0.6.0-b
 dependencies = [
  "display-interface",
  "embedded-graphics-core",
- "embedded-hal",
+ "embedded-hal 0.2.7",
 ]
 
 [[package]]
@@ -227,18 +239,18 @@ dependencies = [
 
 [[package]]
 name = "microbit-common"
-version = "0.13.0"
-source = "git+https://github.com/BartMassey-upstream/microbit#c30ecfc882295551ac2da06ca1f5690fa97849c2"
+version = "0.13.1"
+source = "git+https://github.com/BartMassey-upstream/microbit?branch=v0.13.1-pre#c0afda785e4c75c40c9fedbb8cbe799ec017cdb7"
 dependencies = [
- "embedded-hal",
+ "embedded-hal 0.2.7",
  "nrf52833-hal",
  "tiny-led-matrix",
 ]
 
 [[package]]
 name = "microbit-v2"
-version = "0.13.0"
-source = "git+https://github.com/BartMassey-upstream/microbit#c30ecfc882295551ac2da06ca1f5690fa97849c2"
+version = "0.13.1"
+source = "git+https://github.com/BartMassey-upstream/microbit?branch=v0.13.1-pre#c0afda785e4c75c40c9fedbb8cbe799ec017cdb7"
 dependencies = [
  "microbit-common",
 ]
@@ -267,13 +279,15 @@ checksum = "8d5439c4ad607c3c23abf66de8c8bf57ba8adcd1f129e699851a6e43935d339d"
 [[package]]
 name = "nrf-hal-common"
 version = "0.16.0"
-source = "git+https://github.com/BartMassey-upstream/nrf-hal#300a96010afce18f21e465d9502d4c1744935150"
+source = "git+https://github.com/BartMassey-upstream/nrf-hal?branch=v0.16.1-pre#114bb824fa947b7a7afa2e4da7873a1f5a10cd28"
 dependencies = [
  "cast",
  "cfg-if",
  "cortex-m",
  "embedded-dma",
- "embedded-hal",
+ "embedded-hal 0.2.7",
+ "embedded-hal 1.0.0",
+ "embedded-io",
  "embedded-storage",
  "fixed",
  "nb 1.1.0",
@@ -297,10 +311,10 @@ dependencies = [
 
 [[package]]
 name = "nrf52833-hal"
-version = "0.16.0"
-source = "git+https://github.com/BartMassey-upstream/nrf-hal#300a96010afce18f21e465d9502d4c1744935150"
+version = "0.16.1"
+source = "git+https://github.com/BartMassey-upstream/nrf-hal?branch=v0.16.1-pre#114bb824fa947b7a7afa2e4da7873a1f5a10cd28"
 dependencies = [
- "embedded-hal",
+ "embedded-hal 0.2.7",
  "nrf-hal-common",
  "nrf52833-pac",
 ]
